@@ -50,7 +50,7 @@ function WindowChrome() {
       </div>
 
       <div className="ml-auto flex items-center gap-2">
-        <span className="hidden text-[0.625rem] font-medium text-ink-400 tabular-nums sm:inline">
+        <span className="hidden text-[0.625rem] font-medium text-ink-500 tabular-nums sm:inline">
           100%
         </span>
         <span className="rounded-full bg-linear-to-b from-cobalt-500 to-cobalt-600 px-2.5 py-1 text-[0.625rem] font-semibold text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.2)]">
@@ -66,7 +66,7 @@ function WindowChrome() {
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-1">
-      <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-400 uppercase">
+      <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-500 uppercase">
         {label}
       </p>
       <div className="flex min-w-0 items-center rounded-md border border-ink-900/10 bg-white px-2 py-1.5 text-[0.6875rem] text-ink-800">
@@ -85,7 +85,7 @@ function EditorPane({ className }: { className?: string }) {
     <div className={cx('gap-3 border-r border-ink-900/7 py-3 pr-3', className)}>
       {/* Section list */}
       <div className="flex w-[7.5rem] shrink-0 flex-col gap-2">
-        <p className="px-2 text-[0.5625rem] font-bold tracking-[0.16em] text-ink-400 uppercase">
+        <p className="px-2 text-[0.5625rem] font-bold tracking-[0.16em] text-ink-500 uppercase">
           Sections
         </p>
 
@@ -122,7 +122,7 @@ function EditorPane({ className }: { className?: string }) {
           })}
         </ul>
 
-        <div className="mt-auto flex items-center gap-1.5 rounded-md border border-dashed border-ink-900/10 px-2 py-1.5 text-[0.625rem] font-medium text-ink-400">
+        <div className="mt-auto flex items-center gap-1.5 rounded-md border border-dashed border-ink-900/10 px-2 py-1.5 text-[0.625rem] font-medium text-ink-500">
           <Plus className="size-3" strokeWidth={2.2} />
           Add section
         </div>
@@ -148,7 +148,7 @@ function EditorPane({ className }: { className?: string }) {
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col gap-1">
-          <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-400 uppercase">
+          <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-500 uppercase">
             Highlights
           </p>
           <div className="flex flex-1 flex-col gap-1.5 rounded-md border border-cobalt-500/45 bg-white p-2 ring-2 ring-cobalt-500/12">
@@ -186,7 +186,7 @@ function InsightsRail({ className }: { className?: string }) {
 
   return (
     <div className={cx('gap-2.5 py-3 pl-3 sm:border-l sm:border-ink-900/7', className)}>
-      <p className="hidden items-center gap-1.5 text-[0.5625rem] font-bold tracking-[0.16em] text-ink-400 uppercase sm:flex">
+      <p className="hidden items-center gap-1.5 text-[0.5625rem] font-bold tracking-[0.16em] text-ink-500 uppercase sm:flex">
         <Sparkles className="size-3 text-cobalt-500" strokeWidth={2.2} />
         AI Insights
       </p>
@@ -199,7 +199,7 @@ function InsightsRail({ className }: { className?: string }) {
         transition={{ duration: 0.6, delay: 0.85, ease: easeOutExpo }}
         style={{ transform: 'translateZ(26px)' }}
       >
-        <p className="text-[0.5625rem] font-bold tracking-[0.12em] text-ink-400 uppercase">
+        <p className="text-[0.5625rem] font-bold tracking-[0.12em] text-ink-500 uppercase">
           ATS Score
         </p>
         <ScoreRing
@@ -221,7 +221,7 @@ function InsightsRail({ className }: { className?: string }) {
         transition={{ duration: 0.6, delay: 1, ease: easeOutExpo }}
         style={{ transform: 'translateZ(26px)' }}
       >
-        <p className="text-[0.5625rem] font-bold tracking-[0.12em] text-ink-400 uppercase">
+        <p className="text-[0.5625rem] font-bold tracking-[0.12em] text-ink-500 uppercase">
           Keyword Match
         </p>
         <p className="font-display text-lg leading-none font-bold text-ink-900">

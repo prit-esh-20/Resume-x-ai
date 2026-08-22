@@ -187,7 +187,7 @@ export function Navbar() {
                       className="flex items-center justify-between rounded-xl px-3 py-3.5 text-base font-medium text-ink-800 transition-colors duration-200 hover:bg-ink-900/5"
                     >
                       {link.label}
-                      <ArrowRight className="size-4 text-ink-300" aria-hidden="true" />
+                      <ArrowRight className="size-4 text-ink-400" aria-hidden="true" />
                     </a>
                   </li>
                 ))}

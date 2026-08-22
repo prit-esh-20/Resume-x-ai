@@ -59,9 +59,9 @@ export function ResumeDocument({
         </p>
         <p className="mt-[0.55em] flex flex-wrap items-center gap-x-[0.6em] gap-y-[0.2em] text-[0.92em] text-ink-500">
           <span>{content.location}</span>
-          <span className="text-ink-300">·</span>
+          <span className="text-ink-500">·</span>
           <span>{content.email}</span>
-          <span className="text-ink-300">·</span>
+          <span className="text-ink-500">·</span>
           <span>{content.phone}</span>
         </p>
       </header>
@@ -82,10 +82,10 @@ export function ResumeDocument({
             <div className="flex items-baseline justify-between gap-[1em]">
               <p className="text-[1.02em] font-semibold text-ink-900">
                 {experience.role}
-                <span className="font-normal text-ink-400"> — </span>
+                <span className="font-normal text-ink-500"> — </span>
                 <span className="font-medium text-cobalt-700">{experience.org}</span>
               </p>
-              <p className="shrink-0 text-[0.86em] tracking-[0.01em] text-ink-400 tabular-nums">
+              <p className="shrink-0 text-[0.86em] tracking-[0.01em] text-ink-500 tabular-nums">
                 {experience.period}
               </p>
             </div>
@@ -125,7 +125,7 @@ export function ResumeDocument({
               <p className="text-[1.02em] font-semibold text-ink-900">{project.name}</p>
               <p className="mt-[0.15em] text-[0.95em] leading-[1.45]">{project.detail}</p>
               {project.stack ? (
-                <p className="mt-[0.18em] text-[0.88em] font-medium text-ink-400">
+                <p className="mt-[0.18em] text-[0.88em] font-medium text-ink-500">
                   {project.stack}
                 </p>
               ) : null}
@@ -146,11 +146,11 @@ export function ResumeDocument({
                 <br />
                 <span>{entry.org}</span>
                 {entry.detail ? (
-                  <span className="text-ink-400"> · {entry.detail}</span>
+                  <span className="text-ink-500"> · {entry.detail}</span>
                 ) : null}
               </p>
               {entry.period ? (
-                <p className="shrink-0 text-[0.86em] text-ink-400 tabular-nums">
+                <p className="shrink-0 text-[0.86em] text-ink-500 tabular-nums">
                   {entry.period}
                 </p>
               ) : null}
@@ -164,7 +164,7 @@ export function ResumeDocument({
           <p className="text-[0.96em] leading-[1.6] text-ink-700">
             {content.skills.map((skill, index) => (
               <span key={skill}>
-                {index > 0 ? <span className="text-ink-300">{'  ·  '}</span> : null}
+                {index > 0 ? <span className="text-ink-500">{'  ·  '}</span> : null}
                 {skill}
               </span>
             ))}

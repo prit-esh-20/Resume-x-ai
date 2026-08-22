@@ -37,7 +37,7 @@ export function Footer() {
 
           {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h2 className="font-display text-[0.6875rem] font-bold tracking-[0.16em] text-ink-400 uppercase">
+              <h2 className="font-display text-[0.6875rem] font-bold tracking-[0.16em] text-ink-500 uppercase">
                 {column.title}
               </h2>
               {/* Rows stay compact for mice and grow to a 44px target on touch */}
@@ -58,7 +58,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-ink-900/8 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[0.8125rem] text-ink-400">
+          <p className="text-[0.8125rem] text-ink-500">
             © {year} ResumeX AI. Preview build — sample scores, resumes and testimonials
             are illustrative.
           </p>

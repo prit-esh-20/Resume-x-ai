@@ -31,9 +31,9 @@ function ContactLine({ template, className }: { template: Template; className?: 
   return (
     <p className={cx('flex flex-wrap gap-x-[0.5em] text-[0.92em] text-ink-500', className)}>
       <span>{location}</span>
-      <span className="text-ink-300">·</span>
+      <span className="text-ink-500">·</span>
       <span>{email}</span>
-      <span className="text-ink-300">·</span>
+      <span className="text-ink-500">·</span>
       <span>{phone}</span>
     </p>
   )
@@ -117,7 +117,7 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
       </header>
     ),
     label: (text) => (
-      <p className="mb-[0.4em] text-[0.88em] leading-none font-semibold tracking-[0.22em] text-ink-400 uppercase">
+      <p className="mb-[0.4em] text-[0.88em] leading-none font-semibold tracking-[0.22em] text-ink-500 uppercase">
         {text}
       </p>
     ),
@@ -137,7 +137,7 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
         <div className="mt-[0.45em] space-y-[0.1em] text-[0.92em] text-ink-500">
           <p>{t.content.location}</p>
           <p>
-            {t.content.email} <span className="text-ink-300">·</span> {t.content.phone}
+            {t.content.email} <span className="text-ink-500">·</span> {t.content.phone}
           </p>
         </div>
       </header>
@@ -226,7 +226,7 @@ export function MiniResume({ template, className }: MiniResumeProps) {
           <div key={`${entry.role}-${entry.period}`}>
             <div className="flex items-baseline justify-between gap-[0.8em]">
               <p className="text-[1.05em] font-semibold text-ink-900">{entry.role}</p>
-              <p className="shrink-0 text-[0.88em] text-ink-400 tabular-nums">
+              <p className="shrink-0 text-[0.88em] text-ink-500 tabular-nums">
                 {entry.period}
               </p>
             </div>
@@ -260,7 +260,7 @@ export function MiniResume({ template, className }: MiniResumeProps) {
         <div className="flex items-baseline justify-between gap-[0.8em]">
           <p className="text-[1.05em] font-semibold text-ink-900">{education.degree}</p>
           {education.period ? (
-            <p className="shrink-0 text-[0.88em] text-ink-400 tabular-nums">
+            <p className="shrink-0 text-[0.88em] text-ink-500 tabular-nums">
               {education.period}
             </p>
           ) : null}
@@ -268,7 +268,7 @@ export function MiniResume({ template, className }: MiniResumeProps) {
         <p className="text-[0.96em] text-ink-600">
           {education.org}
           {education.detail ? (
-            <span className="text-ink-400"> · {education.detail}</span>
+            <span className="text-ink-500"> · {education.detail}</span>
           ) : null}
         </p>
       </div>
@@ -278,7 +278,7 @@ export function MiniResume({ template, className }: MiniResumeProps) {
       <p className="text-[0.98em] leading-[1.55] text-ink-700">
         {content.skills.map((skill, index) => (
           <span key={skill}>
-            {index > 0 ? <span className="text-ink-300">{'  ·  '}</span> : null}
+            {index > 0 ? <span className="text-ink-500">{'  ·  '}</span> : null}
             {skill}
           </span>
         ))}

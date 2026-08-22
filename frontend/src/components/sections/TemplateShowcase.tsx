@@ -136,7 +136,7 @@ function TemplatePreviewDialog({
             </div>
 
             <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-[0.75rem] leading-[1.55] text-ink-400">
+              <p className="text-[0.75rem] leading-[1.55] text-ink-500">
                 Sample content shown for demonstration. The candidate, employer and
                 contact details are fictional.
               </p>
@@ -177,7 +177,7 @@ export function TemplateShowcase() {
           ))}
         </motion.ul>
 
-        <p className="mt-8 text-center text-[0.75rem] text-ink-400">
+        <p className="mt-8 text-center text-[0.75rem] text-ink-500">
           Every template preview uses fictional demonstration content.
         </p>
       </div>

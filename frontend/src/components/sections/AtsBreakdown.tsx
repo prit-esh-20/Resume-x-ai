@@ -68,7 +68,7 @@ export function AtsBreakdown() {
           <Reveal className="lg:col-span-5">
             <div className="flex h-full flex-col items-center gap-6 rounded-3xl border border-ink-900/8 bg-white p-7 text-center shadow-sm sm:p-9">
               <div className="flex flex-col items-center gap-1.5">
-                <p className="text-[0.6875rem] font-bold tracking-[0.16em] text-ink-400 uppercase">
+                <p className="text-[0.6875rem] font-bold tracking-[0.16em] text-ink-500 uppercase">
                   Overall ATS Score
                 </p>
                 <p className="text-[0.8125rem] text-ink-500">
@@ -119,7 +119,7 @@ export function AtsBreakdown() {
                 ))}
               </ul>
 
-              <p className="mt-7 border-t border-dashed border-ink-900/10 pt-5 text-[0.75rem] leading-[1.6] text-ink-400">
+              <p className="mt-7 border-t border-dashed border-ink-900/10 pt-5 text-[0.75rem] leading-[1.6] text-ink-500">
                 Demonstration values shown to illustrate the report layout. They are not
                 aggregated results and do not represent any real user.
               </p>

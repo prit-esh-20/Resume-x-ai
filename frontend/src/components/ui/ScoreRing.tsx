@@ -109,7 +109,7 @@ export function ScoreRing({
           <span
             className={cx(
               'font-display text-sm font-semibold',
-              tone === 'dark' ? 'text-ink-400' : 'text-ink-400',
+              tone === 'dark' ? 'text-ink-300' : 'text-ink-500',
             )}
             aria-hidden="true"
           >

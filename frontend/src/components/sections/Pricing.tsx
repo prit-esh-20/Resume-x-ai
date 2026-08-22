@@ -44,7 +44,7 @@ function PlanCard({ plan }: { plan: Plan }) {
               {plan.price}
             </span>
             {plan.cadence ? (
-              <span className="text-[0.9375rem] font-medium text-ink-400">
+              <span className="text-[0.9375rem] font-medium text-ink-500">
                 {plan.cadence}
               </span>
             ) : null}
@@ -121,7 +121,7 @@ export function Pricing() {
           ))}
         </motion.ul>
 
-        <p className="mx-auto mt-8 max-w-xl text-center text-[0.75rem] leading-[1.6] text-ink-400">
+        <p className="mx-auto mt-8 max-w-xl text-center text-[0.75rem] leading-[1.6] text-ink-500">
           Prices are shown for demonstration in this preview build. Billing is not
           available yet.
         </p>
