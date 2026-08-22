@@ -14,7 +14,7 @@ export function LandingPage() {
     <>
       <a
         href="#main"
-        className="sr-focusable fixed top-3 left-3 z-100 rounded-full bg-cobalt-600 px-4 py-2 text-sm font-semibold text-white shadow-lg"
+        className="sr-focusable inline-flex min-h-11 items-center rounded-full bg-cobalt-600 px-4 text-sm font-semibold text-white shadow-lg"
       >
         Skip to main content
       </a>

@@ -132,7 +132,7 @@ export function Navbar() {
           onClick={() => setOpen(true)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          className="grid size-10 place-items-center rounded-xl bg-white text-ink-700 ring-1 ring-ink-900/10 shadow-xs transition-colors duration-200 hover:bg-ink-50 lg:hidden"
+          className="grid size-11 place-items-center rounded-xl bg-white text-ink-700 ring-1 ring-ink-900/10 shadow-xs transition-colors duration-200 hover:bg-ink-50 lg:hidden"
         >
           <Menu className="size-5" aria-hidden="true" />
           <span className="sr-only">Open menu</span>
@@ -171,7 +171,7 @@ export function Navbar() {
                   type="button"
                   autoFocus
                   onClick={() => setOpen(false)}
-                  className="grid size-10 place-items-center rounded-xl text-ink-600 ring-1 ring-ink-900/10 transition-colors duration-200 hover:bg-ink-900/5"
+                  className="grid size-11 place-items-center rounded-xl text-ink-600 ring-1 ring-ink-900/10 transition-colors duration-200 hover:bg-ink-900/5"
                 >
                   <X className="size-5" aria-hidden="true" />
                   <span className="sr-only">Close menu</span>

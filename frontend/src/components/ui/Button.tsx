@@ -29,7 +29,8 @@ const variants: Record<Variant, string> = {
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-4 text-[0.8125rem]',
+  // `sm` grows to a 44px target on touch pointers; `md`/`lg` already clear it.
+  sm: 'h-9 px-4 text-[0.8125rem] pointer-coarse:h-11',
   md: 'h-11 px-5 text-[0.9375rem]',
   lg: 'h-[3.25rem] px-7 text-base',
 }

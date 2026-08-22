@@ -214,7 +214,7 @@
 
 /* Screen-reader-only, but focusable (skip link) */
 @utility sr-focusable {
-  position: absolute;
+  position: fixed;
   left: 1rem;
   top: 0.75rem;
   z-index: 100;
