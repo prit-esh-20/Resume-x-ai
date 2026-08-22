@@ -12,12 +12,17 @@ type ResumeDocumentProps = {
   showSuggestion?: boolean
 }
 
+/**
+ * Section label inside the rendered page. Deliberately a `<p>`, not a heading —
+ * this is a picture of a document, so its internal labels must not appear in the
+ * page's real heading outline.
+ */
 function SectionLabel({ children }: { children: string }) {
   return (
     <div className="mb-[0.7em] flex items-center gap-[0.7em]">
-      <h4 className="font-sans text-[0.86em] leading-none font-bold tracking-[0.15em] text-ink-800 uppercase">
+      <p className="font-sans text-[0.86em] leading-none font-bold tracking-[0.15em] text-ink-800 uppercase">
         {children}
-      </h4>
+      </p>
       <span className="h-px flex-1 bg-ink-200" />
     </div>
   )
@@ -39,16 +44,16 @@ export function ResumeDocument({
   return (
     <article
       className={cx(
-        'flex h-full flex-col overflow-hidden rounded-[3px] bg-white text-[clamp(6.8px,2.62cqw,10px)] leading-normal',
+        'flex h-full flex-col overflow-hidden rounded-[3px] bg-white text-[clamp(6.8px,2.55cqw,9.5px)] leading-normal',
         'px-[2.5em] py-[2.3em] text-ink-600',
         className,
       )}
     >
       {/* Header */}
       <header className="shrink-0">
-        <h3 className="font-display text-[2.15em] leading-[1.05] font-bold tracking-[-0.025em] text-ink-900">
+        <p className="font-display text-[2.15em] leading-[1.05] font-bold tracking-[-0.025em] text-ink-900">
           {content.name}
-        </h3>
+        </p>
         <p className="mt-[0.35em] text-[1.08em] font-semibold tracking-[0.01em] text-cobalt-700">
           {content.title}
         </p>

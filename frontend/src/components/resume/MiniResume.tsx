@@ -63,9 +63,9 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
     order: ['summary', 'experience', 'projects', 'education', 'skills'],
     header: (t) => (
       <header className="border-b border-ink-300 pb-[0.85em] text-center">
-        <h4 className="font-serif text-[2.5em] leading-[1.05] font-semibold tracking-[-0.01em] text-ink-900">
+        <p className="font-serif text-[2.5em] leading-[1.05] font-semibold tracking-[-0.01em] text-ink-900">
           {t.content.name}
-        </h4>
+        </p>
         <p className="mt-[0.15em] text-[1.15em] font-medium tracking-[0.06em] text-ink-700 uppercase">
           {t.content.title}
         </p>
@@ -82,9 +82,9 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
       <header className="flex gap-[0.9em]">
         <span className="mt-[0.25em] w-[0.3em] shrink-0 self-stretch rounded-full bg-cobalt-500" />
         <div>
-          <h4 className="font-display text-[2.35em] leading-[1.05] font-extrabold tracking-[-0.03em] text-ink-900">
+          <p className="font-display text-[2.35em] leading-[1.05] font-extrabold tracking-[-0.03em] text-ink-900">
             {t.content.name}
-          </h4>
+          </p>
           <p className="mt-[0.1em] text-[1.2em] font-semibold text-cobalt-700">
             {t.content.title}
           </p>
@@ -107,9 +107,9 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
     order: ['summary', 'experience', 'projects', 'education', 'skills'],
     header: (t) => (
       <header>
-        <h4 className="font-display text-[2.3em] leading-[1.05] font-medium tracking-[-0.02em] text-ink-900">
+        <p className="font-display text-[2.3em] leading-[1.05] font-medium tracking-[-0.02em] text-ink-900">
           {t.content.name}
-        </h4>
+        </p>
         <p className="mt-[0.2em] text-[1.12em] font-normal tracking-[0.02em] text-ink-500">
           {t.content.title}
         </p>
@@ -128,9 +128,9 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
     order: ['summary', 'experience', 'projects', 'education', 'skills'],
     header: (t) => (
       <header className="-mx-[2.2em] -mt-[2em] mb-[0.4em] border-b border-ink-200 bg-ink-50 px-[2.2em] pt-[2em] pb-[1em]">
-        <h4 className="font-display text-[2.3em] leading-[1.05] font-bold tracking-[-0.025em] text-ink-900">
+        <p className="font-display text-[2.3em] leading-[1.05] font-bold tracking-[-0.025em] text-ink-900">
           {t.content.name}
-        </h4>
+        </p>
         <p className="mt-[0.1em] text-[1.15em] font-semibold tracking-[0.04em] text-ink-700 uppercase">
           {t.content.title}
         </p>
@@ -157,9 +157,9 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
     order: ['summary', 'experience', 'projects', 'education', 'skills'],
     header: (t) => (
       <header className="pb-[0.8em]">
-        <h4 className="font-serif text-[2.6em] leading-[1.02] font-semibold tracking-[0.02em] text-ink-900">
+        <p className="font-serif text-[2.6em] leading-[1.02] font-semibold tracking-[0.02em] text-ink-900">
           {t.content.name}
-        </h4>
+        </p>
         <p className="mt-[0.2em] text-[1.05em] font-medium tracking-[0.2em] text-ink-600 uppercase">
           {t.content.title}
         </p>
@@ -183,9 +183,9 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
     order: ['summary', 'education', 'projects', 'experience', 'skills'],
     header: (t) => (
       <header className="border-b-[0.16em] border-cobalt-500 pb-[0.7em]">
-        <h4 className="font-display text-[2.3em] leading-[1.05] font-bold tracking-[-0.025em] text-ink-900">
+        <p className="font-display text-[2.3em] leading-[1.05] font-bold tracking-[-0.025em] text-ink-900">
           {t.content.name}
-        </h4>
+        </p>
         <p className="mt-[0.12em] text-[1.12em] font-semibold text-ink-700">
           {t.content.title}
         </p>
@@ -289,7 +289,7 @@ export function MiniResume({ template, className }: MiniResumeProps) {
   return (
     <div
       className={cx(
-        'flex h-full flex-col overflow-hidden bg-white px-[2.2em] py-[2em] text-[2.4cqw] text-ink-600',
+        'flex h-full flex-col overflow-hidden bg-white px-[2.2em] py-[2em] text-[2.32cqw] text-ink-600',
         layout.paper,
         className,
       )}

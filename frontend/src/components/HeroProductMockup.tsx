@@ -63,42 +63,21 @@ function WindowChrome() {
 
 /* ------------------------------------------------------------- editor pane */
 
-function Field({
-  label,
-  value,
-  className,
-  caret,
-}: {
-  label: string
-  value: string
-  className?: string
-  caret?: boolean
-}) {
+function Field({ label, value }: { label: string; value: string }) {
   return (
-    <div className={cx('flex flex-col gap-1', className)}>
+    <div className="flex flex-col gap-1">
       <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-400 uppercase">
         {label}
       </p>
-      <div
-        className={cx(
-          'flex min-w-0 items-center rounded-md border bg-white px-2 py-1.5 text-[0.6875rem] text-ink-800',
-          caret ? 'border-cobalt-500/45 ring-2 ring-cobalt-500/12' : 'border-ink-900/10',
-        )}
-      >
+      <div className="flex min-w-0 items-center rounded-md border border-ink-900/10 bg-white px-2 py-1.5 text-[0.6875rem] text-ink-800">
         <span className="truncate">{value}</span>
-        {caret ? (
-          <motion.span
-            className="ml-px inline-block h-[0.85em] w-px shrink-0 bg-cobalt-600"
-            animate={{ opacity: [1, 1, 0, 0] }}
-            transition={{ duration: 1.1, repeat: Infinity, times: [0, 0.5, 0.5, 1] }}
-          />
-        ) : null}
       </div>
     </div>
   )
 }
 
 function EditorPane({ className }: { className?: string }) {
+  const prefersReduced = useReducedMotion()
   const active = useSettlingSelection(2)
   const activeIndex = Math.min(active, editorSections.length - 1)
 
@@ -180,11 +159,13 @@ function EditorPane({ className }: { className?: string }) {
               <span className="rounded-[2px] bg-cobalt-100 px-0.5 ring-1 ring-cobalt-300/70">
                 {ROLE.bullets[1]}
               </span>
-              <motion.span
-                className="ml-px inline-block h-[0.85em] w-px align-middle bg-cobalt-600"
-                animate={{ opacity: [1, 1, 0, 0] }}
-                transition={{ duration: 1.1, repeat: Infinity, times: [0, 0.5, 0.5, 1] }}
-              />
+              {prefersReduced ? null : (
+                <motion.span
+                  className="ml-px inline-block h-[0.85em] w-px align-middle bg-cobalt-600"
+                  animate={{ opacity: [1, 1, 0, 0] }}
+                  transition={{ duration: 1.1, repeat: Infinity, times: [0, 0.5, 0.5, 1] }}
+                />
+              )}
             </p>
           </div>
         </div>

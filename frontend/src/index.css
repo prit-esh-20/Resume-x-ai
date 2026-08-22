@@ -85,41 +85,7 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
 
-  --animate-marquee: marquee 42s linear infinite;
-  --animate-sheen: sheen 3.6s var(--ease-in-out-soft) infinite;
-  --animate-pulse-soft: pulse-soft 2.6s var(--ease-in-out-soft) infinite;
   --animate-border-spin: border-spin 7s linear infinite;
-}
-
-@keyframes marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes sheen {
-  0%,
-  55% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(220%);
-  }
-}
-
-@keyframes pulse-soft {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.55;
-    transform: scale(0.88);
-  }
 }
 
 @keyframes border-spin {
