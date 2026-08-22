@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, useReducedMotion, useTransform } from 'framer-motion'
-import { Plus, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react'
+import { Plus, ShieldCheck, Sparkles, TrendingUp, Wand2 } from 'lucide-react'
 import { ResumeDocument } from '@/components/resume/ResumeDocument'
 import { ScoreRing } from '@/components/ui/ScoreRing'
 import { AnimatedNumber } from '@/components/ui/AnimatedNumber'
@@ -12,8 +12,9 @@ import { atsScore } from '@/data/atsBreakdown'
 import { cx } from '@/lib/cx'
 
 const KEYWORD_MATCH = 94
+const ROLE = heroResume.experience[0]
 
-/** Walks the editor selection forward a few steps on load, then rests. */
+/** Walks the editor selection forward a couple of steps on load, then rests. */
 function useSettlingSelection(steps: number, dwell = 1100) {
   const prefersReduced = useReducedMotion()
   const [index, setIndex] = useState(0)
@@ -60,53 +61,138 @@ function WindowChrome() {
   )
 }
 
-/* -------------------------------------------------------------- left rail */
+/* ------------------------------------------------------------- editor pane */
 
-function EditorRail({ className }: { className?: string }) {
+function Field({
+  label,
+  value,
+  className,
+  caret,
+}: {
+  label: string
+  value: string
+  className?: string
+  caret?: boolean
+}) {
+  return (
+    <div className={cx('flex flex-col gap-1', className)}>
+      <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-400 uppercase">
+        {label}
+      </p>
+      <div
+        className={cx(
+          'flex min-w-0 items-center rounded-md border bg-white px-2 py-1.5 text-[0.6875rem] text-ink-800',
+          caret ? 'border-cobalt-500/45 ring-2 ring-cobalt-500/12' : 'border-ink-900/10',
+        )}
+      >
+        <span className="truncate">{value}</span>
+        {caret ? (
+          <motion.span
+            className="ml-px inline-block h-[0.85em] w-px shrink-0 bg-cobalt-600"
+            animate={{ opacity: [1, 1, 0, 0] }}
+            transition={{ duration: 1.1, repeat: Infinity, times: [0, 0.5, 0.5, 1] }}
+          />
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+function EditorPane({ className }: { className?: string }) {
   const active = useSettlingSelection(2)
+  const activeIndex = Math.min(active, editorSections.length - 1)
 
   return (
-    <div className={cx('flex-col gap-2 border-r border-ink-900/7 py-3 pr-3', className)}>
-      <p className="px-2 text-[0.5625rem] font-bold tracking-[0.16em] text-ink-400 uppercase">
-        Sections
-      </p>
+    <div className={cx('gap-3 border-r border-ink-900/7 py-3 pr-3', className)}>
+      {/* Section list */}
+      <div className="flex w-[7.5rem] shrink-0 flex-col gap-2">
+        <p className="px-2 text-[0.5625rem] font-bold tracking-[0.16em] text-ink-400 uppercase">
+          Sections
+        </p>
 
-      <ul className="flex flex-col gap-0.5">
-        {editorSections.map((section, index) => {
-          const isActive = index === Math.min(active, editorSections.length - 1)
-          return (
-            <li key={section}>
-              <div
-                className={cx(
-                  'relative flex items-center gap-2 rounded-md px-2 py-1.5 text-[0.6875rem] transition-colors duration-300',
-                  isActive
-                    ? 'bg-cobalt-50 font-semibold text-cobalt-800'
-                    : 'font-medium text-ink-500',
-                )}
-              >
-                {isActive ? (
-                  <motion.span
-                    layoutId="hero-rail-marker"
-                    className="absolute top-1.5 bottom-1.5 left-0 w-[2px] rounded-full bg-cobalt-500"
-                    transition={{ duration: 0.35, ease: easeOutExpo }}
-                  />
-                ) : null}
-                <span
+        <ul className="flex flex-col gap-0.5">
+          {editorSections.map((section, index) => {
+            const isActive = index === activeIndex
+            return (
+              <li key={section}>
+                <div
                   className={cx(
-                    'size-1.5 shrink-0 rounded-full transition-colors duration-300',
-                    isActive ? 'bg-cobalt-500' : 'bg-ink-200',
+                    'relative flex items-center gap-2 rounded-md px-2 py-1.5 text-[0.6875rem] transition-colors duration-300',
+                    isActive
+                      ? 'bg-cobalt-50 font-semibold text-cobalt-800'
+                      : 'font-medium text-ink-500',
                   )}
-                />
-                <span className="truncate">{section}</span>
-              </div>
-            </li>
-          )
-        })}
-      </ul>
+                >
+                  {isActive ? (
+                    <motion.span
+                      layoutId="hero-rail-marker"
+                      className="absolute top-1.5 bottom-1.5 left-0 w-[2px] rounded-full bg-cobalt-500"
+                      transition={{ duration: 0.35, ease: easeOutExpo }}
+                    />
+                  ) : null}
+                  <span
+                    className={cx(
+                      'size-1.5 shrink-0 rounded-full transition-colors duration-300',
+                      isActive ? 'bg-cobalt-500' : 'bg-ink-200',
+                    )}
+                  />
+                  <span className="truncate">{section}</span>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
 
-      <div className="mt-auto flex items-center gap-1.5 rounded-md border border-dashed border-ink-900/10 px-2 py-1.5 text-[0.625rem] font-medium text-ink-400">
-        <Plus className="size-3" strokeWidth={2.2} />
-        Add section
+        <div className="mt-auto flex items-center gap-1.5 rounded-md border border-dashed border-ink-900/10 px-2 py-1.5 text-[0.625rem] font-medium text-ink-400">
+          <Plus className="size-3" strokeWidth={2.2} />
+          Add section
+        </div>
+      </div>
+
+      {/* Active section form */}
+      <div className="flex min-w-0 flex-1 flex-col gap-2.5 border-l border-ink-900/7 pl-3">
+        <div className="flex items-center justify-between gap-2">
+          <p className="font-display text-[0.75rem] font-bold text-ink-900">
+            {editorSections[activeIndex]}
+          </p>
+          <span className="rounded-full bg-ink-100 px-1.5 py-0.5 text-[0.5625rem] font-semibold text-ink-500 tabular-nums">
+            1 of 1
+          </span>
+        </div>
+
+        <Field label="Role" value={ROLE.role} />
+        <Field label="Company" value={ROLE.org} />
+
+        <div className="grid grid-cols-2 gap-2">
+          <Field label="From" value="May 2025" />
+          <Field label="To" value="July 2025" />
+        </div>
+
+        <div className="flex min-h-0 flex-1 flex-col gap-1">
+          <p className="text-[0.5625rem] font-semibold tracking-[0.1em] text-ink-400 uppercase">
+            Highlights
+          </p>
+          <div className="flex flex-1 flex-col gap-1.5 rounded-md border border-cobalt-500/45 bg-white p-2 ring-2 ring-cobalt-500/12">
+            <p className="text-[0.6875rem] leading-[1.45] text-ink-700">
+              {ROLE.bullets[0]}
+            </p>
+            <p className="text-[0.6875rem] leading-[1.45] text-ink-700">
+              <span className="rounded-[2px] bg-cobalt-100 px-0.5 ring-1 ring-cobalt-300/70">
+                {ROLE.bullets[1]}
+              </span>
+              <motion.span
+                className="ml-px inline-block h-[0.85em] w-px align-middle bg-cobalt-600"
+                animate={{ opacity: [1, 1, 0, 0] }}
+                transition={{ duration: 1.1, repeat: Infinity, times: [0, 0.5, 0.5, 1] }}
+              />
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-1.5 self-start rounded-full bg-cobalt-600 px-2.5 py-1 text-[0.625rem] font-semibold text-white">
+          <Wand2 className="size-3" strokeWidth={2.2} />
+          Improve with AI
+        </div>
       </div>
     </div>
   )
@@ -154,11 +240,9 @@ function InsightsRail({ className }: { className?: string }) {
         transition={{ duration: 0.6, delay: 1, ease: easeOutExpo }}
         style={{ transform: 'translateZ(26px)' }}
       >
-        <div className="flex items-baseline justify-between gap-2">
-          <p className="text-[0.5625rem] font-bold tracking-[0.12em] text-ink-400 uppercase">
-            Keyword Match
-          </p>
-        </div>
+        <p className="text-[0.5625rem] font-bold tracking-[0.12em] text-ink-400 uppercase">
+          Keyword Match
+        </p>
         <p className="font-display text-lg leading-none font-bold text-ink-900">
           <AnimatedNumber value={KEYWORD_MATCH} suffix="%" immediate duration={1.6} />
         </p>
@@ -193,7 +277,7 @@ function InsightsRail({ className }: { className?: string }) {
           Suggestion
         </p>
         <p className="text-[0.6875rem] leading-[1.45] text-ink-700">
-          Quantify the second bullet — add the metric you improved.
+          Quantify the second highlight — name the metric you improved.
         </p>
         <div className="mt-0.5 flex gap-1.5">
           <span className="rounded-full bg-cobalt-600 px-2 py-0.5 text-[0.5625rem] font-semibold text-white">
@@ -256,7 +340,7 @@ export function HeroProductMockup({ className }: { className?: string }) {
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       role="img"
-      aria-label="Preview of the ResumeX AI editor: a section list, a live resume preview for a demonstration candidate, and an AI insights panel showing a demonstration ATS score of 92 out of 100 and a 94 percent keyword match."
+      aria-label="Preview of the ResumeX AI editor: an editable Experience form on the left, a live resume preview for a demonstration candidate in the centre, and an AI insights panel showing a demonstration ATS score of 92 out of 100 and a 94 percent keyword match."
     >
       {/* Soft contact shadow grounding the slab */}
       <div
@@ -283,13 +367,13 @@ export function HeroProductMockup({ className }: { className?: string }) {
             <div className="overflow-hidden rounded-2xl [transform-style:preserve-3d]">
               <WindowChrome />
 
-              <div className="grid grid-cols-1 gap-0 bg-ink-50/40 px-3 sm:grid-cols-[minmax(0,1fr)_10.75rem] lg:grid-cols-[7.75rem_minmax(0,1fr)_11.5rem]">
-                <EditorRail className="hidden lg:flex" />
+              <div className="grid grid-cols-1 items-stretch bg-ink-50/40 px-3 sm:grid-cols-[minmax(0,1fr)_11rem] lg:grid-cols-[minmax(0,1fr)_24rem_11.5rem]">
+                <EditorPane className="hidden lg:flex" />
 
-                {/* Resume paper — lifted forward in the 3D scene */}
-                <div className="@container px-0 py-3 sm:px-3">
+                {/* Resume paper — portrait page, lifted forward in the 3D scene */}
+                <div className="flex justify-center px-0 py-3 sm:px-3">
                   <div
-                    className="h-[19rem] overflow-hidden rounded-[4px] ring-1 ring-ink-900/8 shadow-lg sm:h-[22rem] lg:h-[29.5rem]"
+                    className="@container aspect-[1/1.294] w-full max-w-[22.5rem] overflow-hidden rounded-[4px] ring-1 ring-ink-900/8 shadow-lg"
                     style={{ transform: 'translateZ(18px)' }}
                   >
                     <ResumeDocument content={heroResume} showSuggestion />
