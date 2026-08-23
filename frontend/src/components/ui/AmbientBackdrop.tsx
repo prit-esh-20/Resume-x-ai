@@ -1,10 +1,12 @@
 import { useId } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { AuroraField } from '@/components/ui/AuroraField'
 import { cx } from '@/lib/cx'
 
 type AmbientBackdropProps = {
   /**
-   * `hero` — light canvas with a soft stage floor and drifting ambient light.
+   * `hero` — light canvas with a drifting aurora field, a soft stage floor and
+   * ambient light. The most treated surface on the page.
    * `deep` — dark surface used by the closing CTA.
    * `quiet` — light canvas, ambient light only, no grid.
    */
@@ -27,6 +29,7 @@ export function AmbientBackdrop({ variant = 'quiet', className }: AmbientBackdro
   const driftSlow = useTransform(scrollY, [0, 900], [0, 48])
 
   const isDeep = variant === 'deep'
+  const isHero = variant === 'hero'
 
   return (
     <div
@@ -40,7 +43,13 @@ export function AmbientBackdrop({ variant = 'quiet', className }: AmbientBackdro
         <div className="absolute inset-0 bg-linear-to-b from-white via-canvas to-canvas" />
       )}
 
-      {/* Ambient light — two very soft radial pools, gently parallaxed */}
+      {/* Aurora field — sits on the base wash, under every other layer here, so
+          the grid, stage floor and seams all still read on top of it */}
+      {isHero ? <AuroraField /> : null}
+
+      {/* Ambient light — two very soft radial pools, gently parallaxed. Held
+          lower on the hero than elsewhere, since the aurora already carries
+          most of the ambient light there */}
       <motion.div
         className="absolute inset-0"
         style={prefersReduced ? undefined : { y: drift }}
@@ -50,7 +59,7 @@ export function AmbientBackdrop({ variant = 'quiet', className }: AmbientBackdro
           style={{
             backgroundImage: isDeep
               ? 'radial-gradient(46% 48% at 50% 108%, color-mix(in oklab, var(--color-cobalt-500) 30%, transparent), transparent 72%)'
-              : 'radial-gradient(52% 46% at 76% 12%, color-mix(in oklab, var(--color-cobalt-500) 13%, transparent), transparent 70%)',
+              : `radial-gradient(52% 46% at 76% 12%, color-mix(in oklab, var(--color-cobalt-500) ${isHero ? 7 : 13}%, transparent), transparent 70%)`,
           }}
         />
       </motion.div>
@@ -64,7 +73,7 @@ export function AmbientBackdrop({ variant = 'quiet', className }: AmbientBackdro
           style={{
             backgroundImage: isDeep
               ? 'radial-gradient(40% 44% at 14% 18%, color-mix(in oklab, var(--color-aurora) 22%, transparent), transparent 72%)'
-              : 'radial-gradient(42% 40% at 10% 26%, color-mix(in oklab, var(--color-aurora) 9%, transparent), transparent 72%)',
+              : `radial-gradient(42% 40% at 10% 26%, color-mix(in oklab, var(--color-aurora) ${isHero ? 5 : 9}%, transparent), transparent 72%)`,
           }}
         />
       </motion.div>
