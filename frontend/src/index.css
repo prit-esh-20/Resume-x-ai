@@ -53,6 +53,14 @@
   --color-signal-800: #0b5343;
   --color-signal-900: #0a4438;
 
+  /* ---------- Danger: form validation / auth errors only ---------- */
+  --color-danger-50: #fcf3f5;
+  --color-danger-100: #fae7ea;
+  --color-danger-200: #f5cdd4;
+  --color-danger-500: #d44a67;
+  --color-danger-600: #c22747;
+  --color-danger-700: #a31e3d;
+
   /* Ambient-light accent — backgrounds/glows only, never text */
   --color-aurora: #6d5bf0;
 
@@ -162,6 +170,16 @@
   button:not(:disabled),
   [role='button']:not([aria-disabled='true']) {
     cursor: pointer;
+  }
+
+  /* Keep browser autofill from painting inputs with its default tint */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-white) inset;
+    -webkit-text-fill-color: var(--color-ink-900);
+    caret-color: var(--color-cobalt-600);
+    transition: background-color 9999s ease-in-out 0s;
   }
 }
 
