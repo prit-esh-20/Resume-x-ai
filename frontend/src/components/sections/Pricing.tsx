@@ -85,7 +85,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 
         <div className="mt-auto pt-2">
           <Button
-            href="#top"
+            href="/login"
             variant={featured ? 'primary' : 'secondary'}
             size="lg"
             fullWidth

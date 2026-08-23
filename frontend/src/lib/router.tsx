@@ -1,6 +1,5 @@
 import {
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useState,
@@ -8,6 +7,7 @@ import {
   type ReactNode,
 } from 'react'
 import { RouterContext, type RouterValue } from '@/lib/routerContext'
+import { useLinkClick } from '@/lib/useLinkClick'
 
 function currentPath() {
   const path = window.location.pathname
@@ -57,26 +57,10 @@ type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
  * Hash anchors (`#pricing`) are left completely alone.
  */
 export function Link({ href, onClick, children, ...rest }: LinkProps) {
-  const router = useContext(RouterContext)
-  const isInternal = href.startsWith('/') && rest.target !== '_blank' && !rest.download
+  const handleClick = useLinkClick<HTMLAnchorElement>(href, onClick, rest)
 
   return (
-    <a
-      {...rest}
-      href={href}
-      onClick={
-        isInternal && router
-          ? (event) => {
-              onClick?.(event)
-              if (event.defaultPrevented) return
-              if (event.button !== 0) return
-              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-              event.preventDefault()
-              router.navigate(href)
-            }
-          : onClick
-      }
-    >
+    <a {...rest} href={href} onClick={handleClick}>
       {children}
     </a>
   )

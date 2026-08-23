@@ -25,7 +25,7 @@ export function FinalCta() {
           </p>
 
           <div className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
-            <Button href="#top" variant="invert" size="lg" className="w-full sm:w-auto">
+            <Button href="/login" variant="invert" size="lg" className="w-full sm:w-auto">
               Build My Resume Free
               <ArrowRight
                 className="size-[1.15rem] transition-transform duration-200 group-hover:translate-x-0.5"

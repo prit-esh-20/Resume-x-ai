@@ -116,8 +116,11 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden lg:block">
-          <Button href="#pricing" size="sm">
+        <div className="hidden items-center gap-1.5 lg:flex">
+          <Button href="/login" variant="quiet" size="sm">
+            Sign in
+          </Button>
+          <Button href="/login" size="sm">
             Get Started Free
             <ArrowRight
               className="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
@@ -193,9 +196,18 @@ export function Navbar() {
                 ))}
               </ul>
 
-              <div className="border-t border-ink-900/8 p-4">
-                <Button href="#pricing" size="md" fullWidth onClick={() => setOpen(false)}>
+              <div className="flex flex-col gap-2.5 border-t border-ink-900/8 p-4">
+                <Button href="/login" size="md" fullWidth onClick={() => setOpen(false)}>
                   Get Started Free
+                </Button>
+                <Button
+                  href="/login"
+                  variant="secondary"
+                  size="md"
+                  fullWidth
+                  onClick={() => setOpen(false)}
+                >
+                  Sign in
                 </Button>
               </div>
             </motion.div>

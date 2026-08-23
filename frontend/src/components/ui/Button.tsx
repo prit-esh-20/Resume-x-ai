@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
+import { useLinkClick } from '@/lib/useLinkClick'
 import { cx } from '@/lib/cx'
 
 type Variant = 'primary' | 'secondary' | 'invert' | 'outlineInvert' | 'quiet'
@@ -63,6 +64,19 @@ export function Button(props: ButtonProps | LinkProps) {
     ...rest
   } = props
 
+  const anchorProps =
+    'href' in rest && typeof rest.href === 'string'
+      ? (rest as AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
+      : null
+
+  // A CTA pointing at an in-app route navigates client-side instead of
+  // reloading the whole app. Hash anchors and external URLs are untouched.
+  const handleClick = useLinkClick<HTMLAnchorElement>(
+    anchorProps?.href,
+    anchorProps?.onClick,
+    anchorProps ?? undefined,
+  )
+
   const classes = cx(
     base,
     variants[variant],
@@ -71,9 +85,9 @@ export function Button(props: ButtonProps | LinkProps) {
     className,
   )
 
-  if ('href' in rest && typeof rest.href === 'string') {
+  if (anchorProps) {
     return (
-      <a className={classes} {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+      <a {...anchorProps} className={classes} onClick={handleClick}>
         {children}
       </a>
     )

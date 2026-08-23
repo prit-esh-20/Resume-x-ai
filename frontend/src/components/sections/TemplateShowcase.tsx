@@ -65,7 +65,7 @@ function TemplateCard({
               Preview
               <span className="sr-only"> the {template.name} template</span>
             </Button>
-            <Button href="#pricing" size="sm" className="flex-1">
+            <Button href="/login" size="sm" className="flex-1">
               Use Template
               <span className="sr-only"> {template.name}</span>
             </Button>
@@ -140,7 +140,7 @@ function TemplatePreviewDialog({
                 Sample content shown for demonstration. The candidate, employer and
                 contact details are fictional.
               </p>
-              <Button href="#pricing" size="sm" onClick={onClose}>
+              <Button href="/login" size="sm" onClick={onClose}>
                 Use this template
                 <ArrowUpRight className="size-3.5" aria-hidden="true" />
               </Button>
