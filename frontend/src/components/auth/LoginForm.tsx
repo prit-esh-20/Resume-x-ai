@@ -198,7 +198,7 @@ export function LoginForm() {
             key="form"
             noValidate
             onSubmit={handleSubmit}
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-4"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

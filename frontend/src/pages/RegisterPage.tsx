@@ -40,14 +40,14 @@ export function RegisterPage() {
     >
       <motion.h1
         id="register-heading"
-        className="text-[clamp(1.875rem,1.4rem+1.9vw,2.5rem)] leading-[1.08]"
+        className="text-[clamp(1.875rem,1.35rem+1.7vw,2.25rem)] leading-[1.08]"
         {...rise(0.07)}
       >
         Create your account
       </motion.h1>
 
       <motion.p
-        className="mt-3 max-w-[42ch] text-[1.0625rem] leading-relaxed text-ink-500"
+        className="mt-2 max-w-[42ch] text-[1.0625rem] leading-relaxed text-ink-500"
         {...rise(0.13)}
       >
         Start building ATS-ready resumes in minutes. Free to start — no credit
@@ -57,31 +57,31 @@ export function RegisterPage() {
       <motion.div
         id="auth-form"
         tabIndex={-1}
-        className="mt-7 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-ink-900/8 outline-none sm:p-8"
+        className="mt-5 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-ink-900/8 outline-none"
         {...rise(0.19)}
       >
         <RegisterForm />
 
-        <p className="mt-6 border-t border-ink-900/8 pt-5 text-center text-sm text-ink-500">
-          Already have an account?{' '}
-          <Link
-            href="/login"
-            className="rounded font-semibold text-cobalt-600 transition-colors duration-200 hover:text-cobalt-700"
-          >
-            Sign in
-          </Link>
-        </p>
+        <div className="mt-4 border-t border-ink-900/8 pt-4 text-center">
+          <p className="text-sm text-ink-500">
+            Already have an account?{' '}
+            <Link
+              href="/login"
+              className="rounded font-semibold text-cobalt-600 transition-colors duration-200 hover:text-cobalt-700"
+            >
+              Sign in
+            </Link>
+          </p>
+          <p className="mt-1.5 text-xs leading-snug text-ink-500">
+            Preview build — any details with an 8+ character password create a
+            demo account. Use the password &ldquo;wrong&rdquo; to see the error
+            state.
+          </p>
+        </div>
       </motion.div>
 
-      <motion.p
-        className="mx-auto mt-4 max-w-[44ch] text-center text-xs leading-relaxed text-ink-500"
-        {...rise(0.25)}
-      >
-        Preview build — any details with an 8+ character password create a demo
-        account. Use the password &ldquo;wrong&rdquo; to see the error state.
-      </motion.p>
-
-      <motion.div className="mt-6 text-center" {...rise(0.28)}>
+      {/* Mobile keeps the full stacked order; desktop carries this in the header */}
+      <motion.div className="mt-5 text-center lg:hidden" {...rise(0.28)}>
         <Link
           href="/"
           className="-mx-2 inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-ink-500 transition-colors duration-200 hover:text-ink-900"

@@ -60,18 +60,25 @@ export function SocialLogin({
       <Button
         type="button"
         variant="secondary"
+        size="sm"
         fullWidth
         onClick={handleClick}
         disabled={disabled}
-        className="mt-4"
+        className="mt-3"
       >
         <GoogleMark />
         Continue with Google
       </Button>
 
-      <p aria-live="polite" className="mt-2 min-h-5 text-center text-[0.8125rem] font-medium text-ink-500">
-        {notice ? NOTICE : ''}
-      </p>
+      {/* `contents` keeps this wrapper out of the flex layout when empty, so
+          the notice never reserves vertical space */}
+      <div className="contents" aria-live="polite">
+        {notice ? (
+          <p className="-mt-1 text-center text-[0.8125rem] font-medium text-ink-500">
+            {NOTICE}
+          </p>
+        ) : null}
+      </div>
     </div>
   )
 }

@@ -15,7 +15,7 @@ type AuthFieldProps = {
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'className'>
 
 const inputClasses = cx(
-  'h-12 w-full rounded-lg border bg-white px-3.5 text-[0.9375rem] text-ink-900',
+  'h-11 w-full rounded-lg border bg-white px-3.5 text-[0.9375rem] text-ink-900',
   'caret-cobalt-600 outline-none placeholder:text-ink-500',
   'transition-[border-color,box-shadow] duration-200 ease-[var(--ease-out-quint)]',
   'border-ink-900/15 hover:border-ink-900/25',

@@ -67,9 +67,9 @@ export function PasswordField({
               transition={{ duration: 0.14, ease: [0.22, 1, 0.36, 1] }}
             >
               {visible ? (
-                <EyeOff className="size-[1.15rem]" aria-hidden="true" />
+                <EyeOff className="size-[1.05rem]" aria-hidden="true" />
               ) : (
-                <Eye className="size-[1.15rem]" aria-hidden="true" />
+                <Eye className="size-[1.05rem]" aria-hidden="true" />
               )}
             </motion.span>
           </AnimatePresence>

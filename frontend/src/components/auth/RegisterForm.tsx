@@ -9,6 +9,7 @@ import { useRouter } from '@/lib/useRouter'
 import { signUp } from '@/lib/auth'
 import { validateEmail, validatePassword } from '@/lib/validation'
 import { easeOutExpo, softSpring } from '@/animations/motion'
+import { cx } from '@/lib/cx'
 
 type FieldErrors = {
   name?: string
@@ -168,7 +169,7 @@ export function RegisterForm() {
             key="form"
             noValidate
             onSubmit={handleSubmit}
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-3"
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -227,7 +228,6 @@ export function RegisterForm() {
               <PasswordField
                 value={password}
                 autoComplete="new-password"
-                hint={errors.password ? undefined : 'Use at least 8 characters.'}
                 onChange={(value) => {
                   setPassword(value)
                   clearServerError()
@@ -245,26 +245,29 @@ export function RegisterForm() {
                 inputRef={passwordRef}
               />
 
-              {/* Live strength readout — appears only once typing starts */}
-              <div aria-live="polite">
-                {strength > 0 ? (
-                  <div className="-mt-2.5 flex items-center gap-3">
-                    <div className="flex flex-1 gap-1" aria-hidden="true">
-                      {[1, 2, 3, 4].map((step) => (
-                        <span
-                          key={step}
-                          className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-                            step <= strength ? level.bar : 'bg-ink-100'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span aria-hidden="true" className={`text-xs font-semibold ${level.text}`}>
-                      {level.label}
-                    </span>
-                    <span className="sr-only">Password strength: {level.label}</span>
-                  </div>
-                ) : null}
+              {/* Live strength readout at a fixed height — the idle state
+                  doubles as the length requirement, so nothing shifts when
+                  typing starts */}
+              <div aria-live="polite" className="mt-2 flex items-center gap-3">
+                <div className="flex flex-1 gap-1" aria-hidden="true">
+                  {[1, 2, 3, 4].map((step) => (
+                    <span
+                      key={step}
+                      className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+                        level && step <= strength ? level.bar : 'bg-ink-100'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span
+                  aria-hidden="true"
+                  className={cx('text-xs font-semibold', level ? level.text : 'text-ink-400')}
+                >
+                  {level ? level.label : 'Min. 8 characters'}
+                </span>
+                <span className="sr-only">
+                  {level ? `Password strength: ${level.label}` : 'Minimum 8 characters'}
+                </span>
               </div>
             </div>
 
