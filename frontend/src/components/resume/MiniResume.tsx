@@ -5,6 +5,11 @@ import { cx } from '@/lib/cx'
 type MiniResumeProps = {
   template: Template
   className?: string
+  /**
+   * Overrides the default accessible name. The landing gallery keeps its
+   * template-preview wording; the dashboard passes a resume-specific label.
+   */
+  label?: string
 }
 
 type SectionKey = 'summary' | 'experience' | 'projects' | 'education' | 'skills'
@@ -212,7 +217,7 @@ const LAYOUTS: Record<TemplateLayout, LayoutSpec> = {
  * Presented to assistive tech as a single image with a descriptive name, since
  * navigating a document thumbnail line by line has no value.
  */
-export function MiniResume({ template, className }: MiniResumeProps) {
+export function MiniResume({ template, className, label }: MiniResumeProps) {
   const layout = LAYOUTS[template.id]
   const { content } = template
   const education = content.education[0]
@@ -294,7 +299,10 @@ export function MiniResume({ template, className }: MiniResumeProps) {
         className,
       )}
       role="img"
-      aria-label={`${template.name} template preview — resume for ${content.name}, ${content.title}, ${content.location}.`}
+      aria-label={
+        label ??
+        `${template.name} template preview — resume for ${content.name}, ${content.title}, ${content.location}.`
+      }
     >
       {layout.header(template)}
 
