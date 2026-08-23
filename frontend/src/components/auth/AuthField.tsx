@@ -7,6 +7,8 @@ type AuthFieldProps = {
   label: string
   /** Rendered inside the right edge of the input (e.g. password toggle). */
   trailing?: ReactNode
+  /** Persistent helper line, hidden while an error is shown. */
+  hint?: string
   /** Shown under the input; also wired to it via aria-describedby. */
   error?: string
   inputRef?: React.Ref<HTMLInputElement>
@@ -32,11 +34,13 @@ export function AuthField({
   id,
   label,
   trailing,
+  hint,
   error,
   inputRef,
   ...input
 }: AuthFieldProps) {
   const errorId = `${id}-error`
+  const hintId = `${id}-hint`
 
   return (
     <div>
@@ -50,7 +54,11 @@ export function AuthField({
           id={id}
           ref={inputRef}
           aria-invalid={error ? true : undefined}
-          aria-describedby={error ? errorId : undefined}
+          aria-describedby={
+            [error ? errorId : null, !error && hint ? hintId : null]
+              .filter(Boolean)
+              .join(' ') || undefined
+          }
           className={cx(inputClasses, error && errorInputClasses, trailing ? 'pr-12' : undefined)}
         />
         {trailing ? (
@@ -67,6 +75,10 @@ export function AuthField({
         >
           <CircleAlert className="mt-px size-4 shrink-0" aria-hidden="true" />
           {error}
+        </p>
+      ) : hint ? (
+        <p id={hintId} className="mt-1.5 text-[0.8125rem] leading-snug text-ink-500">
+          {hint}
         </p>
       ) : null}
     </div>

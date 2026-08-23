@@ -1,21 +1,18 @@
 import { useEffect } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowLeft, Sparkles } from 'lucide-react'
-import { AuthBackdrop } from '@/components/auth/AuthBackdrop'
-import { Button } from '@/components/ui/Button'
-import { Eyebrow } from '@/components/ui/Eyebrow'
-import { Logo } from '@/components/ui/Logo'
+import { ArrowLeft } from 'lucide-react'
+import { AuthShell } from '@/components/auth/AuthShell'
+import { RegisterForm } from '@/components/auth/RegisterForm'
+import { SignupAside } from '@/components/auth/SignupAside'
 import { Link } from '@/lib/router'
-import { useRouter } from '@/lib/useRouter'
 import { easeOutExpo } from '@/animations/motion'
 
 /**
- * Intentional holding view for /register until the full sign-up flow ships.
- * Keeps the "Create an account" action on a real destination instead of
- * bouncing users back to the landing page.
+ * Sign-up view. Sits beside /login on the shared AuthShell scaffold — same
+ * ambience, same card language, with a motivation column instead of the
+ * product mockup.
  */
 export function RegisterPage() {
-  const { navigate } = useRouter()
   const prefersReduced = useReducedMotion()
 
   const rise = (delay: number) =>
@@ -36,56 +33,63 @@ export function RegisterPage() {
   }, [])
 
   return (
-    <div className="relative isolate flex min-h-dvh flex-col overflow-hidden">
-      <AuthBackdrop />
+    <AuthShell
+      labelledBy="register-heading"
+      skipLabel="Skip to sign-up form"
+      aside={<SignupAside className="hidden lg:block" />}
+    >
+      <motion.h1
+        id="register-heading"
+        className="text-[clamp(1.875rem,1.4rem+1.9vw,2.5rem)] leading-[1.08]"
+        {...rise(0.07)}
+      >
+        Create your account
+      </motion.h1>
 
-      <header className="relative shell flex h-16 shrink-0 items-center lg:h-[4.5rem]">
-        <motion.div {...rise(0)}>
+      <motion.p
+        className="mt-3 max-w-[42ch] text-[1.0625rem] leading-relaxed text-ink-500"
+        {...rise(0.13)}
+      >
+        Start building ATS-ready resumes in minutes. Free to start — no credit
+        card required.
+      </motion.p>
+
+      <motion.div
+        id="auth-form"
+        tabIndex={-1}
+        className="mt-7 rounded-2xl bg-white p-6 shadow-lg ring-1 ring-ink-900/8 outline-none sm:p-8"
+        {...rise(0.19)}
+      >
+        <RegisterForm />
+
+        <p className="mt-6 border-t border-ink-900/8 pt-5 text-center text-sm text-ink-500">
+          Already have an account?{' '}
           <Link
-            href="/"
-            className="-m-2 inline-flex rounded-xl p-2 transition-opacity duration-200 hover:opacity-80"
+            href="/login"
+            className="rounded font-semibold text-cobalt-600 transition-colors duration-200 hover:text-cobalt-700"
           >
-            <Logo />
-            <span className="sr-only">ResumeX AI — back to homepage</span>
+            Sign in
           </Link>
-        </motion.div>
-      </header>
+        </p>
+      </motion.div>
 
-      <main className="relative flex flex-1 items-center justify-center">
-        <div className="shell w-full py-14 text-center">
-          <motion.div className="flex justify-center" {...rise(0.07)}>
-            <Eyebrow icon={<Sparkles className="size-3.5" />}>Coming soon</Eyebrow>
-          </motion.div>
+      <motion.p
+        className="mx-auto mt-4 max-w-[44ch] text-center text-xs leading-relaxed text-ink-500"
+        {...rise(0.25)}
+      >
+        Preview build — any details with an 8+ character password create a demo
+        account. Use the password &ldquo;wrong&rdquo; to see the error state.
+      </motion.p>
 
-          <motion.h1
-            className="mx-auto mt-5 max-w-[24ch] text-[clamp(1.875rem,1.4rem+1.9vw,2.5rem)] leading-[1.08]"
-            {...rise(0.13)}
-          >
-            Create your account
-          </motion.h1>
-
-          <motion.p
-            className="mx-auto mt-3 max-w-[44ch] text-[1.0625rem] leading-relaxed text-ink-500"
-            {...rise(0.19)}
-          >
-            Registration isn&rsquo;t open in this preview yet. Sign in with the
-            demo credentials, or head back and explore the product first.
-          </motion.p>
-
-          <motion.div
-            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
-            {...rise(0.25)}
-          >
-            <Button size="lg" className="w-full sm:w-auto" onClick={() => navigate('/login')}>
-              Back to sign in
-            </Button>
-            <Button variant="secondary" size="lg" className="w-full sm:w-auto" onClick={() => navigate('/')}>
-              <ArrowLeft className="size-4" aria-hidden="true" />
-              Back to homepage
-            </Button>
-          </motion.div>
-        </div>
-      </main>
-    </div>
+      <motion.div className="mt-6 text-center" {...rise(0.28)}>
+        <Link
+          href="/"
+          className="-mx-2 inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium text-ink-500 transition-colors duration-200 hover:text-ink-900"
+        >
+          <ArrowLeft className="size-4" aria-hidden="true" />
+          Back to ResumeX AI
+        </Link>
+      </motion.div>
+    </AuthShell>
   )
 }

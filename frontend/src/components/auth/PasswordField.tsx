@@ -8,6 +8,7 @@ type PasswordFieldProps = {
   onChange: (value: string) => void
   onBlur?: () => void
   error?: string
+  hint?: string
   autoComplete?: string
   inputRef?: React.Ref<HTMLInputElement>
   disabled?: boolean
@@ -23,6 +24,7 @@ export function PasswordField({
   onChange,
   onBlur,
   error,
+  hint,
   autoComplete = 'current-password',
   inputRef,
   disabled,
@@ -41,6 +43,7 @@ export function PasswordField({
       onChange={(event) => onChange(event.target.value)}
       onBlur={onBlur}
       error={error}
+      hint={hint}
       autoComplete={autoComplete}
       spellCheck={false}
       autoCapitalize="none"

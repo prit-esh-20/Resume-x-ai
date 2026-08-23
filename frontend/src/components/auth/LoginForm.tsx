@@ -12,12 +12,10 @@ import { SocialLogin } from '@/components/auth/SocialLogin'
 import { Button } from '@/components/ui/Button'
 import { useRouter } from '@/lib/useRouter'
 import { signIn } from '@/lib/auth'
+import { validateEmail, validatePassword } from '@/lib/validation'
 import { easeOutExpo, softSpring } from '@/animations/motion'
 
 const REMEMBER_KEY = 'resumex:remembered-email'
-const MIN_PASSWORD_LENGTH = 8
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 type FieldErrors = { email?: string; password?: string }
 
@@ -26,19 +24,6 @@ function readRememberedEmail() {
     return window.localStorage.getItem(REMEMBER_KEY) ?? ''
   } catch {
     return ''
-  }
-}
-
-function validateEmail(value: string): string | undefined {
-  const email = value.trim()
-  if (!email) return 'Please enter your email address.'
-  if (!EMAIL_PATTERN.test(email)) return 'Please enter a valid email address.'
-}
-
-function validatePassword(value: string): string | undefined {
-  if (!value) return 'Please enter your password.'
-  if (value.length < MIN_PASSWORD_LENGTH) {
-    return `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`
   }
 }
 

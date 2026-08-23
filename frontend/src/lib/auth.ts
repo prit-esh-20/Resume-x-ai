@@ -25,3 +25,22 @@ export function signIn(email: string, password: string): Promise<SignInResult> {
     }, 1200)
   })
 }
+
+/**
+ * Frontend-only stand-in for `POST /api/auth/register`. Same demo contract
+ * as `signIn` (the literal password "wrong" fails deterministically) and the
+ * same swap-in point for the real API.
+ */
+export function signUp(name: string, email: string, password: string): Promise<SignInResult> {
+  return new Promise((resolve) => {
+    window.setTimeout(() => {
+      void name
+      void email
+      if (password.toLowerCase() === 'wrong') {
+        resolve({ ok: false, message: GENERIC_ERROR })
+        return
+      }
+      resolve({ ok: true })
+    }, 1200)
+  })
+}

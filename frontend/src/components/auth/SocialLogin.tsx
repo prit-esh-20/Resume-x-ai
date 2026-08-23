@@ -31,7 +31,13 @@ const NOTICE = 'Google sign-in is not connected in this preview yet.'
  * Secondary auth path. OAuth has no backend to talk to yet, so the button
  * reports that honestly instead of pretending a sign-in happened.
  */
-export function SocialLogin({ disabled }: { disabled?: boolean }) {
+export function SocialLogin({
+  disabled,
+  label = 'or continue with',
+}: {
+  disabled?: boolean
+  label?: string
+}) {
   const [notice, setNotice] = useState(false)
   const timer = useRef<number>(undefined)
 
@@ -47,9 +53,7 @@ export function SocialLogin({ disabled }: { disabled?: boolean }) {
     <div>
       <div className="flex items-center gap-3" aria-hidden="true">
         <span className="h-px flex-1 bg-ink-900/10" />
-        <span className="text-xs font-medium tracking-[0.08em] text-ink-500">
-          or continue with
-        </span>
+        <span className="text-xs font-medium tracking-[0.08em] text-ink-500">{label}</span>
         <span className="h-px flex-1 bg-ink-900/10" />
       </div>
 
